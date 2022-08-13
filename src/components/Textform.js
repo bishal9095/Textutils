@@ -35,22 +35,22 @@ export default function Textform(props) {
     return (
     <>
         <div className='container' style={{color:(props.mode==='dark'|| props.mode==='green')?'white':'black'}}>
-            <h1 >Enter some text</h1>
+            <h2 className='mt-2'>{props.heading}</h2>
             <div className="mb-3">
-                <label htmlFor="mytextBox" className="form-label">{props.heading}</label>
+                <label htmlFor="mytextBox" className="form-label">Enter your text here</label>
                 {/* This onChange function will run if changed anything in the text box. This the event (that is text is being changed) */}
                 {/* At the course of the event the value becomes the before text + the changed text. And it is then changed with setText in the function. */}
-                <textarea className="form-control" onChange={handleOnChange} value={text} id="mytextbox" rows="8" style={{backgroundColor:(props.mode==='dark'||props.mode==='green')?'grey':'white',color:(props.mode==='dark' || props.mode==='green')?'white':'black'}}></textarea>
+                <textarea className="form-control" onChange={handleOnChange} value={text} id="mytextbox" rows="8" style={{backgroundColor:(props.mode==='dark'||props.mode==='green')?'#253431':'white',color:(props.mode==='dark' || props.mode==='green')?'white':'black'}}></textarea>
             </div>
-            <button type="button" className={`btn btn-${props.mode==='green'? 'success':'info'} mx-3`} onClick={hanldeUpClick}>Convert to UpperCase</button>
-            <button type="button" className={`btn btn-${props.mode==='green'? 'success':'info'} mx-3`} onClick={handleLowClick}>Convert to Lowercase</button>
-            <button type="button" className={`btn btn-${props.mode==='green'? 'success':'info'} mx-3`} onClick={handleClearText}>Clear Text</button>
-            <button type="button" className={`btn btn-${props.mode==='green'? 'success':'info'} mx-3`} onClick={handleCopyText}>Copy Text</button>
+            <button disabled={text.length===0} type="button" className={`btn btn-${props.mode==='green'? 'success':'info'} mx-3 my-1`} onClick={hanldeUpClick}>Convert to UpperCase</button>
+            <button disabled={text.length===0} type="button" className={`btn btn-${props.mode==='green'? 'success':'info'} mx-3 my-1`} onClick={handleLowClick}>Convert to Lowercase</button>
+            <button disabled={text.length===0} type="button" className={`btn btn-${props.mode==='green'? 'success':'info'} mx-3 my-1`} onClick={handleClearText}>Clear Text</button>
+            <button disabled={text.length===0} type="button" className={`btn btn-${props.mode==='green'? 'success':'info'} mx-3 my-1`} onClick={handleCopyText}>Copy Text</button>
         </div>
         <div className='container' style={{color:(props.mode==='dark'||props.mode==='green')?'white':'black'}}>
             <h1>Here's your text summary</h1>
-            <h4>{text.length} characters and {text.split(" ").length-1} words</h4>
-            <p>Time required to read this text for an average person is {(text.split(" ").length*0.0032)} mins</p>
+            <h4>{text.length} characters and {text.split(" ").filter((element)=>{return element.length!==0}).length} words</h4>
+            <p>Time required to read this text for an average person is {text.split(" ").filter((element)=>{return element.length!==0}).length*0.0032} mins</p>
         </div>
 
     </>

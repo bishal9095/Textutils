@@ -1,11 +1,11 @@
 // import logo from "./logo.svg";
 import React, { useState } from "react";
-// import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import "./App.css";
 import Alert from "./components/Alert";
 import Navbar from "./components/Navbar";
 import Textform from "./components/Textform";
-// import About from "./components/About";
+import About from "./components/About";
 // So props are basically customizable user defined propeties.Also remember the default props and all.
 // And as soon as you pass it, it just renders thats all.
 
@@ -27,12 +27,12 @@ function App() {
       setMode("green");
       document.body.style.backgroundColor = "#1d3623";
       showAlert("Succesfully turned into green mode", "success");
-      document.title = "Text Utility-Green Mode";
+      // document.title = "Text Utility-Green Mode";
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("Succesfully turned into light mode", "success");
-      document.title = "Text Utility-Light Mode";
+      // document.title = "Text Utility-Light Mode";
     }
   };
   const toggleMode = () => {
@@ -40,17 +40,17 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#1d404a";
       showAlert("Succesfully turned into dark mode", "success");
-      document.title = "Text Utility-Dark Mode";
+      // document.title = "Text Utility-Dark Mode";
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("Succesfully turned into light mode", "success");
-      document.title = "Text Utility-Light Mode";
+      // document.title = "Text Utility-Light Mode";
     }
   };
   return (
     <>
-      {/* <Router> */}
+      <Router>
         
         <Navbar
           mode={mode}
@@ -58,32 +58,32 @@ function App() {
           toggleModeGreen={toggleModeGreen}
           name="TextUtils"
           aboutText="Know more"
-        />
+         />
         <Alert alert={alert} />
-        {/* <div className="container"> */}
-        {/* <Routes>
+        <div className="container">
+        <Routes>
           {/* /users ---> Component1
           /users/home ---> Component2 */}
-          {/* <Route path="/about" element={<About />}> */}
+          <Route path="/About" element={<About mode={mode} />}>
             
-          {/* </Route> */}
+          </Route>
 
-          {/* <Route path="/" element={<Textform */}
-                {/* // showAlert={showAlert} */}
-                {/* mode={mode} */}
-                {/* heading="Enter text" */}
-              {/* />}> */}
+          <Route path="/" element={<Textform
+                showAlert={showAlert}
+                mode={mode}
+                heading="Try Textutils - Uppercase, Word Counter, Character Counter, Lowercase"
+               />}> 
             
-            <Textform
+            {/* <Textform
                 showAlert={showAlert}
                 mode={mode}
                 heading="Enter text"
-              />
-          {/* </Route>
-        </Routes> */}
-        {/* </div> */}
+              /> */}
+          </Route>
+        </Routes>
+        </div>
         
-      {/* </Router> */}
+      </Router>
     </>
   );
 }
