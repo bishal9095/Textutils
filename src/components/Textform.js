@@ -27,9 +27,8 @@ export default function Textform(props) {
         props.showAlert("Cleared text successfully.","success")
     }
     const handleCopyText=()=>{
-        let text=document.getElementById("mytextbox")
-        text.select();
-        navigator.clipboard.write(text.value)
+        
+        navigator.clipboard.writeText(text)
         props.showAlert("Text copied to Clipboard","success")
     }
     return (
@@ -49,7 +48,7 @@ export default function Textform(props) {
         </div>
         <div className='container' style={{color:(props.mode==='dark'||props.mode==='green')?'white':'black'}}>
             <h1>Here's your text summary</h1>
-            <h4>{text.length} characters and {text.split(" ").filter((element)=>{return element.length!==0}).length} words</h4>
+            <h4>{text.length} characters and {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words</h4>
             <p>Time required to read this text for an average person is {text.split(" ").filter((element)=>{return element.length!==0}).length*0.0032} mins</p>
         </div>
 
